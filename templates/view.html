@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hotel Management - View Guests</title>
+</head>
+<body>
+    <h1></h1>
+    <style>
+        h1 {
+            text-align: center;
+            font-size: 35px;
+        }
+    </style>
+        
+    <style>
+        h2 {
+            text-align: center;
+            font-size: 35px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 35px;
+        }
+        .guest-images {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 300px));
+            gap: 10px;
+            justify-content: center;
+            margin: 0 auto;
+            max-width: 650px;
+        }
+        .guest-image-item img {
+            max-width: 80%;
+            height: auto;
+            display: block;
+        }
+    </style>
+    <style>
+        body {
+            background: url('/static/patrick-fischer-niGsD4QOBTo.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(5px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 700px;
+            color: rgb(255, 255, 255);
+            text-align: center;
+        }
+        a.upload-new {
+            color: #1de099 !important;
+            text-align: center;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 20px;
+            display: block;
+        }
+        a.upload-new:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <div class="glass-panel">
+    <a href="/" class="upload-new">Upload New</a>
+    <h1>Guests Sorted by Date and Room</h1>
+    <style>
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+    <ul>
+        {% for room, guests in grouped_guests.items() %}
+        <li>
+            <h2>Room: {{ room }}</h2>
+            <div class="guest-images">
+            {% for guest in guests %}
+                <div class="guest-image-item">
+                    Date: {{ guest.date }}<br>
+                    <img src="data:image/{{ guest.mimetype }};base64,{{ guest.image_base64 }}" alt="ID Image">
+                </div>
+            {% endfor %}
+            </div>
+        </li>
+        {% endfor %}
+    <br>
+    
+    </div>
+</body>
+</html>

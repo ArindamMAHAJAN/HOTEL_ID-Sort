@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hotel Management - Upload ID</title>
+    <style>
+        /* Center the container vertically and horizontally */
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('/static/patrick-fischer-niGsD4QOBTo.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Container box styling */
+        .container {
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            width: 350px;
+            color: #eee;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="file"] {
+            width: 100%;
+            padding: 8px 10px;
+            margin-bottom: 20px;
+            border: none;
+            border-bottom: 2px solid #555;
+            background: transparent;
+            color: #eee;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="date"]:focus,
+        input[type="file"]:focus {
+            border-bottom-color: #1de099;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px 0;
+            border: none;
+            border-radius: 25px;
+            background: transparent;
+            color: #1de099;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #1de099;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hotel Mahajan International</h1>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <label for="room">Room:</label>
+            <input type="text" id="room" name="room" required>
+            
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required max="{{ max_date }}" value="{{ max_date }}">
+            
+            <label for="id_image">ID Image:</label>
+            <input type="file" id="id_image" name="id_image" accept="image/*" multiple required>
+            
+            <input type="submit" value="Upload">
+        </form>
+        <a href="/view">View All Guests</a>
+    </div>
+</body>
+</html>
