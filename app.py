@@ -1,6 +1,8 @@
 import mimetypes
 import pytz
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session, flash
+import os
+
 from pymongo import MongoClient
 from bson import ObjectId
 import pytesseract
@@ -10,6 +12,13 @@ import datetime
 from datetime import datetime, timezone
 
 app = Flask(__name__)
+app.secret_key = os.urandom(24)  # Secret key for session management
+
+import os
+
+# Login credentials from environment variables
+VALID_USERNAME = os.getenv('LOGIN_USERNAME', 'Arindam56')
+VALID_PASSWORD = os.getenv('LOGIN_PASSWORD', 'Arindam75')
 
 # Connect to MongoDB
 client = MongoClient('localhost', 27017)
@@ -30,8 +39,30 @@ def log_access():
 
 from datetime import datetime
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        if username == VALID_USERNAME and password == VALID_PASSWORD:
+            session['logged_in'] = True
+            flash('You were successfully logged in', 'success')
+            return redirect(url_for('index'))
+        else:
+            flash('Invalid username or password', 'danger')
+            return render_template('login.html')
+    return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+    session.pop('logged_in', None)
+    flash('You were logged out', 'info')
+    return redirect(url_for('login'))
+
 @app.route('/')
 def index():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
     max_date = datetime.now().strftime('%Y-%m-%d')
     return render_template('index.html', max_date=max_date)
 

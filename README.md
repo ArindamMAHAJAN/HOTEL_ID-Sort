@@ -13,11 +13,16 @@ This project is a web application for managing hotel-related functionalities. It
 1. Ensure you have Python installed.
 2. (Optional) Create and activate a virtual environment.
 3. Install required dependencies (if any).
-4. Run the application:
+4. Set environment variables for login credentials (optional, defaults provided):
+   ```
+   export LOGIN_USERNAME=your_username
+   export LOGIN_PASSWORD=your_password
+   ```
+5. Run the application:
    ```
    python app.py
    ```
-5. Access the web app in your browser at `http://localhost:5000` (or the configured port).
+6. Access the web app in your browser at `http://localhost:5000` (or the configured port).
 
 ## Project Structure
 
