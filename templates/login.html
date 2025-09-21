@@ -4,27 +4,78 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Login</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Times New Roman', Times, serif, sans-serif;
+            background: url("{{ url_for('static', filename='pawel-czerwinski-OmeepUGQBA0-unsplash.jpg') }}") no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .glass-container {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 2rem;
+            width: 320px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            color: #fff;
+        }
+        .glass-container h2 {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+        .glass-container label {
+            display: block;
+            margin-top: 1rem;
+        }
+        .glass-container input {
+            width: 100%;
+            padding: 0.5rem;
+            margin-top: 0.25rem;
+            border: none;
+            border-radius: 5px;
+        }
+        .glass-container button {
+            margin-top: 1.5rem;
+            width: 100%;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.3);
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .glass-container button:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+        ul {
+            padding-left: 1rem;
+            color: #ffdddd;
+        }
+        ul li {
+            margin-bottom: 0.5rem;
+        }
+    </style>
 </head>
 <body>
-    <h2>Login</h2>
-    {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-        <ul>
-          {% for category, message in messages %}
-            <li class="{{ category }}">{{ message }}</li>
-          {% endfor %}
-        </ul>
-      {% endif %}
-    {% endwith %}
-    <form method="post" action="{{ url_for('login') }}">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required autofocus />
-        <br />
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required />
-        <br />
-        <button type="submit">Login</button>
-    </form>
+    <div class="glass-container">
+        <h2>Login</h2>
+        <form method="post" action="{{ url_for('login') }}">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required autofocus />
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required />
+            <button type="submit">Login</button>
+        </form>
+    </div>
 </body>
 </html>
