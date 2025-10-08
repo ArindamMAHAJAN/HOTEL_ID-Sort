@@ -49,7 +49,7 @@ The application connects to a local MongoDB instance and uses two collections:
 
 ## Running the Application
 
-1. Run the application:
+1. Run the application: source venv/bin/activate && python app.py
    ```
    python app.py
    ```
